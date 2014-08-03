@@ -8,6 +8,7 @@ namespace Ajedrez_Nerv
 {
     class Program
     {
+        public static int turno = 1;
         static void Main(string[] args)
         {
             

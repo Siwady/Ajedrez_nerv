@@ -15,5 +15,6 @@ namespace Ajedrez_Nerv
 
         bool Mover(int fila, int columna);
         bool Capturar(int fila, int columna);
+        
     }
 }

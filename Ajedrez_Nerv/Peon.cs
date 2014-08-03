@@ -22,12 +22,130 @@ namespace Ajedrez_Nerv
         }
         public bool Mover(int fila, int columna)
         {
-            throw new NotImplementedException();
+            if (this.Color_Ficha == 'B')
+            {
+                if (this.Fila > fila && this.Columna == columna)
+                {
+                    if (this.Fila == 6)
+                    {
+                        if ((this.Fila - fila) == 1 || (this.Fila - fila) == 2)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else if (this.Fila < 6 && this.Fila >= 1)
+                    {
+                        if ((this.Fila - fila) == 1)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (this.Color_Ficha == 'N')
+            {
+                if (this.Fila < fila && this.Columna == columna)
+                {
+                    if (this.Fila == 1)
+                    {
+                        if ((fila - this.Fila) == 1 || (fila - this.Fila) == 2)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+
+                            return false;
+                        }
+                    }
+                    else if (this.Fila >= 1 && this.Fila < 7)
+                    {
+                        if ((fila - this.Fila) == 1)
+                        {
+
+                            return true;
+                        }
+                        else
+                        {
+
+                            return false;
+                        }
+                    }
+                    else
+                    {
+
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool Capturar(int fila, int columna)
         {
-            throw new NotImplementedException();
+            if (this.Color_Ficha == 'B')
+            {
+                if (this.Fila > fila && (columna > 0 && columna <= 8 && (columna < this.Columna || columna > this.Columna)))
+                {
+                    if ((this.Fila - fila) == 1 && ((columna - this.Columna) == 1 || (columna - this.Columna) == -1))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (this.Color_Ficha == 'N')
+            {
+                if (this.Fila < fila && (columna > 0 && columna <= 8 && (columna < this.Columna || columna > this.Columna)))
+                {
+                    if ((fila - this.Fila) == 1 && ((columna - this.Columna == 1) || (columna - this.Columna) == -1))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }
