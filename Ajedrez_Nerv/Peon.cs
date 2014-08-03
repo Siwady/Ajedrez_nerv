@@ -103,7 +103,6 @@ namespace Ajedrez_Nerv
                 return false;
             }
         }
-
         public bool Capturar(int fila, int columna)
         {
             if (this.Color_Ficha == 'B')

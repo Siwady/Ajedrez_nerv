@@ -23,12 +23,12 @@ namespace Ajedrez_Nerv
                 tablero.Imprimir();
                 if (turno)
                 {
-                    Console.Write("\n\n---Turno Fichas Negras---\n¿Que pieza desea mover?: ");
+                    Console.Write("\n\n---Turno Fichas Blancas---\n¿Que pieza desea mover?: ");
                     turno = false;
                 }
                 else
                 {
-                    Console.Write("\n\n---Turno Fichas Blancas---\n¿Que pieza desea mover?: ");
+                    Console.Write("\n\n---Turno Fichas Negras---\n¿Que pieza desea mover?: ");
                     turno = true;
                 }
                 nombre_pieza = Console.ReadLine();
@@ -43,7 +43,8 @@ namespace Ajedrez_Nerv
                 if (tablero.Mover_Pieza(nombre_pieza, fila, columna, nueva_fila, nueva_columna))
                 {
                     Console.Write("\nPieza se movio satisfactoriamente");
-                    
+                    Console.WriteLine();
+                    Console.WriteLine();
                 }
                 else
                 {
