@@ -22,13 +22,16 @@ namespace Ajedrez_Nerv
         }
         public bool Mover(int fila, int columna)
         {
-            throw new NotImplementedException();
+            Alfil movimiento_Alfil = new Alfil(Tipo_Ficha, Color_Ficha, fila, columna);
+            Torre movimiento_Torre = new Torre(Tipo_Ficha, Color_Ficha, fila, columna);
+            Columna = columna;
+            Fila = fila;
+            return movimiento_Alfil.Mover(fila, columna) || movimiento_Torre.Mover(fila, columna);
         }
 
         public bool Capturar(int fila, int columna)
         {
             throw new NotImplementedException();
         }
-
     }
 }
