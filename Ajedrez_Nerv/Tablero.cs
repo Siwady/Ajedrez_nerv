@@ -9,7 +9,7 @@ namespace Ajedrez_Nerv
 {
     class Tablero
     {
-        Ficha[,] tablero;
+        public static Ficha[,] tablero;
         static int movreyB = 0;
         static int movtorreB = 0;
         static int movreyN = 0;
@@ -55,7 +55,7 @@ namespace Ajedrez_Nerv
         public void Imprimir()
         {
             for(int f=0;f<(tablero.Length/9)-1;f++){
-                Console.Write(f+"  ");
+                Console.Write(f+1+"  ");
                 for (int c = 1; c < tablero.Length/9; c++)
                 {
                     if (tablero[f, c] == null)
@@ -75,6 +75,7 @@ namespace Ajedrez_Nerv
             {
                 Console.Write(x+"   ");
             }
+            Console.WriteLine();
         }
 
         public bool Mover_Pieza(String nc, int f, int c, int ff,int cc)
@@ -202,7 +203,7 @@ namespace Ajedrez_Nerv
                     return false;
                 }
             }else{
-                Console.Write("\nNO HAY PIEZA EN DICHA POSICION");
+                Console.WriteLine("\nNO HAY PIEZA EN DICHA POSICION");
                 return false;
             }
         }
