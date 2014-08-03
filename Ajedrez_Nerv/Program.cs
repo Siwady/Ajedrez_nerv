@@ -49,7 +49,7 @@ namespace Ajedrez_Nerv
                 else
                 {
                     Console.Write("\nError al mover la pieza\n");
-                    
+
                 }
 
 
