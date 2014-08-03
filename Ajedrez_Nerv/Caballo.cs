@@ -29,5 +29,6 @@ namespace Ajedrez_Nerv
         {
             throw new NotImplementedException();
         }
+
     }
 }

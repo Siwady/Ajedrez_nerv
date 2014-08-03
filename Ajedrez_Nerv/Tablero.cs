@@ -55,7 +55,7 @@ namespace Ajedrez_Nerv
         public void Imprimir()
         {
             for(int f=0;f<(tablero.Length/9)-1;f++){
-                Console.Write(f+1+"  ");
+                Console.Write((tablero.Length/9)-(f+1)+"  ");
                 for (int c = 1; c < tablero.Length/9; c++)
                 {
                     if (tablero[f, c] == null)
@@ -64,7 +64,6 @@ namespace Ajedrez_Nerv
                     {
                         Console.Write(tablero[f, c].Tipo_Ficha.ToString()+tablero[f, c].Color_Ficha.ToString());
                         Console.Write("  ");
-
                     }
                 }
                 Console.WriteLine();
@@ -82,16 +81,17 @@ namespace Ajedrez_Nerv
         {
             char name=nc.ToCharArray().ElementAt(0);
             char color=nc.ToCharArray().ElementAt(1);
-        
             int fila=getFila(f);
             int columna=c;
-       
+
             if(tablero[fila,columna]!=null){
                 if(tablero[fila,columna].Tipo_Ficha==name&&tablero[fila,columna].Color_Ficha==color){
                     int newfila=getFila(ff);
                     int newcolumna=cc;
+
                     if(tablero[newfila,newcolumna]==null){
                         bool move=tablero[fila,columna].Mover(newfila,newcolumna);
+                        
                         if(move==true){
                             if(tablero[fila,columna].GetType().Name.CompareTo("Peon") == 0){
                                 tablero[newfila,newcolumna]=new Peon(tablero[fila,columna].Tipo_Ficha,tablero[fila,columna].Color_Ficha,newfila,newcolumna);
@@ -128,13 +128,16 @@ namespace Ajedrez_Nerv
                                 tablero[fila,columna]=null;
                                 return true;
                             }else{
+                                Console.Write("No se encontro tipo");
                                 return false;
                             }
                         }else{
+                            Console.Write("Funcion Mover retorno falso");
                             return false;
                         }  
-                    }else if(tablero[newfila,newcolumna].GetType().Name.CompareTo("Ficha") == 0){
+                    }else if(tablero[newfila,newcolumna].GetType().Name.CompareTo("Ficha") == 0){//SI LA NUEVA POSICION HAY UNA PIEZA PASA A LA CAPTURA
                         if(tablero[newfila,newcolumna].Color_Ficha==color){
+                            Console.Write("COME A UNA PIEZA MISMO COLOR");
                             return false;
                         }else{
                             bool cap=tablero[fila,columna].Capturar(newfila, newcolumna);
@@ -190,16 +193,20 @@ namespace Ajedrez_Nerv
                                     tablero[fila,columna]=null;
                                     return true;
                                 }else{
+                                    Console.Write("No se encontro tipo");
                                     return false;
                                 }
                             }else{
+                                Console.Write("Booleano Cap retorno falso");
                                 return false;
                             }
                         }
                     }else{
+                        Console.Write("Linea 138 retorno falso");
                         return false;
                     }
                 }else{
+                    Console.Write("NOMBRE Y COLOR NO COINCIDEN");
                     return false;
                 }
             }else{

@@ -7,3 +7,6 @@ C:\Users\Siwady\Desktop\Ajedrez\Ajedrez\Ajedrez_Nerv\obj\Debug\Ajedrez_Nerv.exe
 C:\Users\Siwady\Desktop\Ajedrez\Ajedrez\Ajedrez_Nerv\obj\Debug\Ajedrez_Nerv.pdb
 C:\Users\PavelNote\Documents\Visual Studio 2013\Projects\Ajedrez_nerv\Ajedrez_Nerv\obj\Debug\Ajedrez_Nerv.exe
 C:\Users\PavelNote\Documents\Visual Studio 2013\Projects\Ajedrez_nerv\Ajedrez_Nerv\obj\Debug\Ajedrez_Nerv.pdb
+C:\Users\PavelNote\Documents\Visual Studio 2013\Projects\Ajedrez_nerv\Ajedrez_Nerv\bin\Debug\Ajedrez_Nerv.exe
+C:\Users\PavelNote\Documents\Visual Studio 2013\Projects\Ajedrez_nerv\Ajedrez_Nerv\bin\Debug\Ajedrez_Nerv.pdb
+C:\Users\PavelNote\Documents\Visual Studio 2013\Projects\Ajedrez_nerv\Ajedrez_Nerv\obj\Debug\Ajedrez_Nerv.csprojResolveAssemblyReference.cache

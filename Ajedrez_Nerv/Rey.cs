@@ -22,12 +22,20 @@ namespace Ajedrez_Nerv
         }
         public bool Mover(int fila, int columna)
         {
-            throw new NotImplementedException();
+            if (((Fila - fila) == 1 || (Fila - fila) == -1) || ((Columna - columna) == 1 || (Columna - columna) == -1))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool Capturar(int fila, int columna)
         {
-            throw new NotImplementedException();
+            return Mover(fila, columna);
         }
+
     }
 }
