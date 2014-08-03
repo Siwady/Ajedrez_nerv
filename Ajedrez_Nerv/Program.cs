@@ -10,6 +10,7 @@ namespace Ajedrez_Nerv
     {
         static void Main(string[] args)
         {
+            
         }
     }
 }

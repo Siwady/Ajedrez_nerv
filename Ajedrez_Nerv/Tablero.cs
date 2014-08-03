@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace Ajedrez_Nerv
     {
         Ficha[,] tablero;
 
-        private void Inicializar()
+        public void Inicializar()
         {
             tablero=new Ficha[9,9];
 
@@ -43,13 +44,29 @@ namespace Ajedrez_Nerv
             tablero[0,8] = new Torre('T', 'N', 0, 8);
         }
 
-        private void Ordenar_Tablero()
+        public void Imprimir()
         {
-        }
+            for(int f=0;f<(tablero.Length/9)-1;f++){
+                Console.Write(f+"  ");
+                for (int c = 1; c < tablero.Length/9; c++)
+                {
+                    if (tablero[f, c] == null)
+                        Console.Write("--  ");
+                    else
+                    {
+                        Console.Write(tablero[f, c].Tipo_Ficha.ToString()+tablero[f, c].Color_Ficha.ToString());
+                        Console.Write("  ");
 
-        private void Imprimir_Tablero()
-        {
+                    }
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+            Console.Write("   ");
+            for(int x=1;x<9;x++)
+            {
+                Console.Write(x+"   ");
+            }
         }
-
     }
 }
