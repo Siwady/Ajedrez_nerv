@@ -54,6 +54,7 @@ namespace Ajedrez_Nerv
 
         public void Imprimir()
         {
+            Console.WriteLine();
             for (int f = 0; f < (tablero.Length / 9) - 1; f++)
             {
                 Console.Write((tablero.Length / 9) - (f + 1) + "  ");
@@ -84,137 +85,41 @@ namespace Ajedrez_Nerv
             char color = nc.ToCharArray().ElementAt(1);
             int fila = getFila(f);
             int columna = c;
-
-            if (tablero[fila, columna] != null)
+            if ((Program.turno == 1 && Tablero.tablero[fila, columna].Color_Ficha == 'B') ||
+                (Program.turno == 0 && Tablero.tablero[fila, columna].Color_Ficha == 'N'))
             {
-                if (tablero[fila, columna].Tipo_Ficha == name && tablero[fila, columna].Color_Ficha == color)
+                if (tablero[fila, columna] != null)
                 {
-                    int newfila = getFila(ff);
-                    int newcolumna = cc;
-
-                    if (tablero[newfila, newcolumna] == null)
+                    if (tablero[fila, columna].Tipo_Ficha == name && tablero[fila, columna].Color_Ficha == color)
                     {
-                        bool move = tablero[fila, columna].Mover(newfila, newcolumna);
+                        int newfila = getFila(ff);
+                        int newcolumna = cc;
 
-                        if (move == true)
+                        if (tablero[newfila, newcolumna] == null)
                         {
-                            if (tablero[fila, columna].GetType().Name.CompareTo("Peon") == 0)
-                            {
-                                tablero[newfila, newcolumna] = new Peon(tablero[fila, columna].Tipo_Ficha, tablero[fila, columna].Color_Ficha, newfila, newcolumna);
-                                tablero[fila, columna] = null;
+                            bool move = tablero[fila, columna].Mover(newfila, newcolumna);
 
-                                return true;
-                            }
-                            else if (tablero[fila, columna].GetType().Name.CompareTo("Caballo") == 0)
+                            if (move == true)
                             {
-                                tablero[newfila, newcolumna] = new Caballo(tablero[fila, columna].Tipo_Ficha, tablero[fila, columna].Color_Ficha, newfila, newcolumna);
-                                tablero[fila, columna] = null;
-                                return true;
-                            }
-                            else if (tablero[fila, columna].GetType().Name.CompareTo("Alfil") == 0)
-                            {
-                                tablero[newfila, newcolumna] = new Alfil(tablero[fila, columna].Tipo_Ficha, tablero[fila, columna].Color_Ficha, newfila, newcolumna);
-                                tablero[fila, columna] = null;
-                                return true;
-                            }
-                            else if (tablero[fila, columna].GetType().Name.CompareTo("Torre") == 0)
-                            {
-                                if (Program.turno == 1)
-                                {
-                                    movtorreB += 1;
-                                }
-                                else
-                                {
-                                    movtorreN += 1;
-                                }
-                                tablero[newfila, newcolumna] = new Torre(tablero[fila, columna].Tipo_Ficha, tablero[fila, columna].Color_Ficha, newfila, newcolumna);
-                                tablero[fila, columna] = null;
-                                return true;
-                            }
-                            else if (tablero[fila, columna].GetType().Name.CompareTo("Dama") == 0)
-                            {
-                                tablero[newfila, newcolumna] = new Dama(tablero[fila, columna].Tipo_Ficha, tablero[fila, columna].Color_Ficha, newfila, newcolumna);
-                                tablero[fila, columna] = null;
-                                return true;
-                            }
-                            else if (tablero[fila, columna].GetType().Name.CompareTo("Rey") == 0)
-                            {
-                                if (Program.turno == 1)
-                                {
-                                    movreyB += 1;
-                                }
-                                else
-                                {
-                                    movreyN += 1;
-                                }
-                                tablero[newfila, newcolumna] = new Rey(tablero[fila, columna].Tipo_Ficha, tablero[fila, columna].Color_Ficha, newfila, newcolumna);
-                                tablero[fila, columna] = null;
-                                return true;
-
-                            }else{
-                                Console.Write("No se encontro tipo");
-                                return false;
-                            }
-                        }else{
-                            Console.Write("Funcion Mover retorno falso");
-                            return false;
-                        }  
-                    }else if(tablero[newfila,newcolumna].GetType().Name.CompareTo("Ficha") == 0){//SI LA NUEVA POSICION HAY UNA PIEZA PASA A LA CAPTURA
-                        if(tablero[newfila,newcolumna].Color_Ficha==color){
-
-
-                            Console.Write("COME A UNA PIEZA MISMO COLOR");
-                            return false;
-                        }
-                        else
-                        {
-                            bool cap = tablero[fila, columna].Capturar(newfila, newcolumna);
-                            if (cap == true)
-                            {
-                                if (tablero[fila, columna].Color_Ficha == 'B')
-                                {
-                                    this.piezascomidasB += 1;
-                                }
-                                else if (tablero[fila, columna].Color_Ficha == 'N')
-                                {
-                                    this.piezascomidasN += 1;
-                                }
-                                if (tablero[newfila, newcolumna].GetType().Name.CompareTo("Rey") == 0)
-                                {
-                                    if (tablero[fila, columna].Color_Ficha == 'B')
-                                    {
-                                        this.piezascomidasB -= 1;
-                                        resp = 'n';
-                                    }
-                                    else if (tablero[fila, columna].Color_Ficha == 'N')
-                                    {
-                                        this.piezascomidasN -= 1;
-                                        resp = 'n';
-                                    }
-                                }
                                 if (tablero[fila, columna].GetType().Name.CompareTo("Peon") == 0)
                                 {
-                                    tablero[newfila, newcolumna] = new Peon(tablero[fila, columna].Tipo_Ficha, tablero[fila, columna].Color_Ficha, newfila, newcolumna);
+                                    tablero[newfila, newcolumna] = new Peon(tablero[fila, columna].Tipo_Ficha,
+                                        tablero[fila, columna].Color_Ficha, newfila, newcolumna);
                                     tablero[fila, columna] = null;
+
                                     return true;
                                 }
                                 else if (tablero[fila, columna].GetType().Name.CompareTo("Caballo") == 0)
                                 {
-                                    tablero[newfila, newcolumna] = new Caballo(tablero[fila, columna].Tipo_Ficha, tablero[fila, columna].Color_Ficha, newfila, newcolumna);
+                                    tablero[newfila, newcolumna] = new Caballo(tablero[fila, columna].Tipo_Ficha,
+                                        tablero[fila, columna].Color_Ficha, newfila, newcolumna);
                                     tablero[fila, columna] = null;
                                     return true;
                                 }
-                                else if (tablero[fila, columna].GetType().Name.CompareTo("Rey") == 0)
+                                else if (tablero[fila, columna].GetType().Name.CompareTo("Alfil") == 0)
                                 {
-                                    if (Program.turno == 1)
-                                    {
-                                        movreyB += 1;
-                                    }
-                                    else
-                                    {
-                                        movreyN += 1;
-                                    }
-                                    tablero[newfila, newcolumna] = new Rey(tablero[fila, columna].Tipo_Ficha, tablero[fila, columna].Color_Ficha, newfila, newcolumna);
+                                    tablero[newfila, newcolumna] = new Alfil(tablero[fila, columna].Tipo_Ficha,
+                                        tablero[fila, columna].Color_Ficha, newfila, newcolumna);
                                     tablero[fila, columna] = null;
                                     return true;
                                 }
@@ -228,19 +133,30 @@ namespace Ajedrez_Nerv
                                     {
                                         movtorreN += 1;
                                     }
-                                    tablero[newfila, newcolumna] = new Torre(tablero[fila, columna].Tipo_Ficha, tablero[fila, columna].Color_Ficha, newfila, newcolumna);
+                                    tablero[newfila, newcolumna] = new Torre(tablero[fila, columna].Tipo_Ficha,
+                                        tablero[fila, columna].Color_Ficha, newfila, newcolumna);
                                     tablero[fila, columna] = null;
                                     return true;
                                 }
                                 else if (tablero[fila, columna].GetType().Name.CompareTo("Dama") == 0)
                                 {
-                                    tablero[newfila, newcolumna] = new Dama(tablero[fila, columna].Tipo_Ficha, tablero[fila, columna].Color_Ficha, newfila, newcolumna);
+                                    tablero[newfila, newcolumna] = new Dama(tablero[fila, columna].Tipo_Ficha,
+                                        tablero[fila, columna].Color_Ficha, newfila, newcolumna);
                                     tablero[fila, columna] = null;
                                     return true;
                                 }
-                                else if (tablero[fila, columna].GetType().Name.CompareTo("Alfil") == 0)
+                                else if (tablero[fila, columna].GetType().Name.CompareTo("Rey") == 0)
                                 {
-                                    tablero[newfila, newcolumna] = new Alfil(tablero[fila, columna].Tipo_Ficha, tablero[fila, columna].Color_Ficha, newfila, newcolumna);
+                                    if (Program.turno == 1)
+                                    {
+                                        movreyB += 1;
+                                    }
+                                    else
+                                    {
+                                        movreyN += 1;
+                                    }
+                                    tablero[newfila, newcolumna] = new Rey(tablero[fila, columna].Tipo_Ficha,
+                                        tablero[fila, columna].Color_Ficha, newfila, newcolumna);
                                     tablero[fila, columna] = null;
                                     return true;
 
@@ -253,29 +169,143 @@ namespace Ajedrez_Nerv
                             }
                             else
                             {
-
-                                Console.Write("Booleano Cap retorno falso");
+                                Console.Write("Funcion Mover retorno falso");
                                 return false;
                             }
                         }
+                        else if (tablero[newfila, newcolumna] != null)
+                        {
+//SI LA NUEVA POSICION HAY UNA PIEZA PASA A LA CAPTURA
+                            if (tablero[newfila, newcolumna].Color_Ficha == color)
+                            {
 
+
+                                Console.Write("COME A UNA PIEZA MISMO COLOR");
+                                return false;
+                            }
+                            else
+                            {
+                                Console.WriteLine("entre aca");
+                                bool cap = tablero[fila, columna].Capturar(newfila, newcolumna);
+                                if (cap == true)
+                                {
+                                    if (tablero[fila, columna].Color_Ficha == 'B')
+                                    {
+                                        this.piezascomidasB += 1;
+                                    }
+                                    else if (tablero[fila, columna].Color_Ficha == 'N')
+                                    {
+                                        this.piezascomidasN += 1;
+                                    }
+                                    if (tablero[newfila, newcolumna].GetType().Name.CompareTo("Rey") == 0)
+                                    {
+                                        if (tablero[fila, columna].Color_Ficha == 'B')
+                                        {
+                                            this.piezascomidasB -= 1;
+                                            resp = 'n';
+                                        }
+                                        else if (tablero[fila, columna].Color_Ficha == 'N')
+                                        {
+                                            this.piezascomidasN -= 1;
+                                            resp = 'n';
+                                        }
+                                    }
+                                    if (tablero[fila, columna].GetType().Name.CompareTo("Peon") == 0)
+                                    {
+                                        tablero[newfila, newcolumna] = new Peon(tablero[fila, columna].Tipo_Ficha,
+                                            tablero[fila, columna].Color_Ficha, newfila, newcolumna);
+                                        tablero[fila, columna] = null;
+                                        return true;
+                                    }
+                                    else if (tablero[fila, columna].GetType().Name.CompareTo("Caballo") == 0)
+                                    {
+                                        tablero[newfila, newcolumna] = new Caballo(tablero[fila, columna].Tipo_Ficha,
+                                            tablero[fila, columna].Color_Ficha, newfila, newcolumna);
+                                        tablero[fila, columna] = null;
+                                        return true;
+                                    }
+                                    else if (tablero[fila, columna].GetType().Name.CompareTo("Rey") == 0)
+                                    {
+                                        if (Program.turno == 1)
+                                        {
+                                            movreyB += 1;
+                                        }
+                                        else
+                                        {
+                                            movreyN += 1;
+                                        }
+                                        tablero[newfila, newcolumna] = new Rey(tablero[fila, columna].Tipo_Ficha,
+                                            tablero[fila, columna].Color_Ficha, newfila, newcolumna);
+                                        tablero[fila, columna] = null;
+                                        return true;
+                                    }
+                                    else if (tablero[fila, columna].GetType().Name.CompareTo("Torre") == 0)
+                                    {
+                                        if (Program.turno == 1)
+                                        {
+                                            movtorreB += 1;
+                                        }
+                                        else
+                                        {
+                                            movtorreN += 1;
+                                        }
+                                        tablero[newfila, newcolumna] = new Torre(tablero[fila, columna].Tipo_Ficha,
+                                            tablero[fila, columna].Color_Ficha, newfila, newcolumna);
+                                        tablero[fila, columna] = null;
+                                        return true;
+                                    }
+                                    else if (tablero[fila, columna].GetType().Name.CompareTo("Dama") == 0)
+                                    {
+                                        tablero[newfila, newcolumna] = new Dama(tablero[fila, columna].Tipo_Ficha,
+                                            tablero[fila, columna].Color_Ficha, newfila, newcolumna);
+                                        tablero[fila, columna] = null;
+                                        return true;
+                                    }
+                                    else if (tablero[fila, columna].GetType().Name.CompareTo("Alfil") == 0)
+                                    {
+                                        tablero[newfila, newcolumna] = new Alfil(tablero[fila, columna].Tipo_Ficha,
+                                            tablero[fila, columna].Color_Ficha, newfila, newcolumna);
+                                        tablero[fila, columna] = null;
+                                        return true;
+
+                                    }
+                                    else
+                                    {
+                                        Console.Write("No se encontro tipo");
+                                        return false;
+                                    }
+                                }
+                                else
+                                {
+
+                                    Console.Write("Booleano Cap retorno falso");
+                                    return false;
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            Console.Write("Linea 138 retorno falso");
+                            return false;
+                        }
                     }
                     else
                     {
-                        Console.Write("Linea 138 retorno falso");
+
+                        Console.Write("NOMBRE Y COLOR NO COINCIDEN");
                         return false;
                     }
                 }
                 else
                 {
-
-                    Console.Write("NOMBRE Y COLOR NO COINCIDEN");
+                    Console.WriteLine("\nNO HAY PIEZA EN DICHA POSICION");
                     return false;
                 }
             }
             else
             {
-                Console.WriteLine("\nNO HAY PIEZA EN DICHA POSICION");
+                Console.Write("esas no son sus fichas");
                 return false;
             }
         }
