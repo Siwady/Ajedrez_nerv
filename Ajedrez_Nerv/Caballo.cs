@@ -25,7 +25,8 @@ namespace Ajedrez_Nerv
             int difcolumna = columna - Columna;
             int diffila = fila - Fila;
 
-            if (((Math.Abs(diffila) == 2) && (Math.Abs(difcolumna) == 1)) || ((Math.Abs(diffila) == 1) && (Math.Abs(difcolumna) == 2)))
+            if (((Math.Abs(diffila) == 2) && (Math.Abs(difcolumna) == 1)) || ((Math.Abs(diffila) == 1) && 
+                (Math.Abs(difcolumna) == 2)))
             {
                 Fila = fila;
                 Columna = columna;
