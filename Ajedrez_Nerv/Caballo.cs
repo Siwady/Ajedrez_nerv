@@ -22,13 +22,44 @@ namespace Ajedrez_Nerv
         }
         public bool Mover(int fila, int columna)
         {
-            throw new NotImplementedException();
+            int difcolumna = columna - Columna;
+            int diffila = fila - Fila;
+
+            if (((Math.Abs(diffila) == 2) && (Math.Abs(difcolumna) == 1)) || ((Math.Abs(diffila) == 1) && (Math.Abs(difcolumna) == 2)))
+            {
+                Fila = fila;
+                Columna = columna;
+                return true;
+            }
+            return false;
+            /* if ((fila >= 0 && fila <= 7) && (columna > 0 && columna <= 8))
+            {
+                if (((Fila - fila) == 1 || (Fila - fila) == -1) && ((Columna - columna) == 2 || (Columna - columna) == -2))
+                {
+                    Fila = fila;
+                    Columna = columna;
+                    return true;
+                }
+                else if (((Fila - fila) == 2 || (Fila - fila) == -2) && ((Columna - columna) == 1 || (Columna - columna) == -1))
+                {
+                    Fila = fila;
+                    Columna = columna;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }*/
         }
 
         public bool Capturar(int fila, int columna)
         {
-            throw new NotImplementedException();
+            return Mover(fila, columna);
         }
-
     }
 }
