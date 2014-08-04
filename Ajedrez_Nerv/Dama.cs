@@ -22,16 +22,322 @@ namespace Ajedrez_Nerv
         }
         public bool Mover(int fila, int columna)
         {
-            Alfil movimiento_Alfil = new Alfil(Tipo_Ficha, Color_Ficha, fila, columna);
-            Torre movimiento_Torre = new Torre(Tipo_Ficha, Color_Ficha, fila, columna);
-            Columna = columna;
-            Fila = fila;
-            return movimiento_Alfil.Mover(fila, columna) || movimiento_Torre.Mover(fila, columna);
+            /* Alfil movimiento_Alfil = new Alfil(Tipo_Ficha, Color_Ficha, fila, columna);
+             Torre movimiento_Torre = new Torre(Tipo_Ficha, Color_Ficha, fila, columna);
+             Columna = columna;
+             Fila = fila;
+             return movimiento_Alfil.Mover(fila, columna) ;*/
+
+
+            //int fila = f;
+            //int columna = c;
+            bool move = true;
+            int f3 = Fila;
+            int c3 = Columna;
+
+            if ((fila > Fila && columna > Columna) || (fila > Fila && columna < Columna) || (fila < Fila && columna > Columna)
+                    || (fila < Fila && columna < Columna))
+            {
+                if (fila > Fila && columna > Columna)
+                {
+                    for (int x = 0; x < fila - Fila; x++)
+                    {
+                        if (Tablero.tablero[f3 + 1, c3 + 1] != null)
+                        {
+                            move = false;
+                            break;
+                        }
+                        else
+                        {
+                            f3 += 1;
+                            c3 += 1;
+                        }
+                    }
+                }
+                else if (fila > Fila && columna < Columna)
+                {
+                    for (int x = 0; x < fila - Fila; x++)
+                    {
+                        if (Tablero.tablero[f3 + 1, c3 - 1] != null)
+                        {
+                            move = false;
+                            break;
+                        }
+                        else
+                        {
+                            f3 += 1;
+                            c3 -= 1;
+                        }
+                    }
+                }
+                else if (fila < Fila && columna > Columna)
+                {
+                    for (int x = 0; x < Fila - fila; x++)
+                    {
+                        if (Tablero.tablero[f3 - 1, c3 + 1] != null)
+                        {
+                            move = false;
+                            break;
+                        }
+                        else
+                        {
+                            f3 -= 1;
+                            c3 += 1;
+                        }
+                    }
+                }
+                else if (fila < Fila && columna < Columna)
+                {
+                    for (int x = 0; x < Fila - fila; x++)
+                    {
+                        if (Tablero.tablero[f3 - 1, c3 - 1] != null)
+                        {
+                            move = false;
+                            break;
+                        }
+                        else
+                        {
+                            f3 -= 1;
+                            c3 -= 1;
+                        }
+                    }
+                }
+                else
+                {
+                    move = false;
+                }
+            }
+            else if ((fila == Fila && columna > Columna) || (fila == Fila && columna < Columna) || (columna == Columna && fila > Fila)
+                   || (columna == Columna && fila < Fila))
+            {
+                if (fila == Fila && columna > Columna)
+                {
+                    for (int x = 0; x < columna - Columna; x++)
+                    {
+                        if (Tablero.tablero[f3, c3 + 1] != null)
+                        {
+                            move = false;
+                            break;
+                        }
+                        else
+                        {
+                            c3 = +1;
+                        }
+                    }
+                }
+                else if (fila == Fila && columna < Columna)
+                {
+                    for (int x = 0; x < Columna - columna; x++)
+                    {
+                        if (Tablero.tablero[f3, c3 - 1] != null)
+                        {
+                            move = false;
+                            break;
+                        }
+                        else
+                        {
+                            c3 -= 1;
+                        }
+                    }
+                }
+                else if (columna == Columna && fila > Fila)
+                {
+                    for (int x = 0; x < fila - Fila; x++)
+                    {
+                        if (Tablero.tablero[f3 + 1, c3] != null)
+                        {
+                            move = false;
+                            break;
+                        }
+                        else
+                        {
+                            f3 += 1;
+                        }
+                    }
+                }
+                else if (columna == Columna && fila < Fila)
+                {
+                    for (int x = 0; x < Fila - fila; x++)
+                    {
+                        if (Tablero.tablero[f3 - 1, c3] != null)
+                        {
+                            move = false;
+                            break;
+                        }
+                        else
+                        {
+                            f3 -= 1;
+                        }
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                move = false;
+            }
+            return move;
+
+
         }
 
         public bool Capturar(int fila, int columna)
         {
-            throw new NotImplementedException();
+
+
+            bool move = true;
+            int f3 = Fila;
+            int c3 = Columna;
+
+            if ((fila > Fila && columna > Columna) || (fila > Fila && columna < Columna) || (fila < Fila && columna > Columna)
+                    || (fila < Fila && columna < Columna))
+            {
+                if (fila > Fila && columna > Columna)
+                {
+                    for (int x = 0; x < (fila - Fila) - 1; x++)
+                    {
+                        if (Tablero.tablero[f3 + 1, c3 + 1] != null)
+                        {
+                            move = false;
+                            break;
+                        }
+                        else
+                        {
+                            f3 += 1;
+                            c3 += 1;
+                        }
+                    }
+                }
+                else if (fila > Fila && columna < Columna)
+                {
+                    for (int x = 0; x < (fila - Fila) - 1; x++)
+                    {
+                        if (Tablero.tablero[f3 + 1, c3 - 1] != null)
+                        {
+                            move = false;
+                            break;
+                        }
+                        else
+                        {
+                            f3 += 1;
+                            c3 -= 1;
+                        }
+                    }
+                }
+                else if (fila < Fila && columna > Columna)
+                {
+                    for (int x = 0; x < (Fila - fila) - 1; x++)
+                    {
+                        if (Tablero.tablero[f3 - 1, c3 + 1] != null)
+                        {
+                            move = false;
+                            break;
+                        }
+                        else
+                        {
+                            f3 -= 1;
+                            c3 += 1;
+                        }
+                    }
+                }
+                else if (fila < Fila && columna < Columna)
+                {
+                    for (int x = 0; x < (Fila - fila) - 1; x++)
+                    {
+                        if (Tablero.tablero[f3 - 1, c3 - 1] != null)
+                        {
+                            move = false;
+                            break;
+                        }
+                        else
+                        {
+                            f3 -= 1;
+                            c3 -= 1;
+                        }
+                    }
+                }
+                else
+                {
+                    move = false;
+                }
+            }
+            else if ((fila == Fila && columna > Columna) || (fila == Fila && columna < Columna) || (columna == Columna && fila > Fila)
+                   || (columna == Columna && fila < Fila))
+            {
+                if (fila == Fila && columna > Columna)
+                {
+                    for (int x = 0; x < (columna - Columna) - 1; x++)
+                    {
+                        if (Tablero.tablero[f3, c3 + 1] != null)
+                        {
+                            move = false;
+                            break;
+                        }
+                        else
+                        {
+                            c3 = +1;
+                        }
+                    }
+                }
+                else if (fila == Fila && columna < Columna)
+                {
+                    for (int x = 0; x < (Columna - columna) - 1; x++)
+                    {
+                        if (Tablero.tablero[f3, c3 - 1] != null)
+                        {
+                            move = false;
+                            break;
+                        }
+                        else
+                        {
+                            c3 -= 1;
+                        }
+                    }
+                }
+                else if (columna == Columna && fila > Fila)
+                {
+                    for (int x = 0; x < (fila - Fila) - 1; x++)
+                    {
+                        if (Tablero.tablero[f3 + 1, c3] != null)
+                        {
+                            move = false;
+                            break;
+                        }
+                        else
+                        {
+                            f3 += 1;
+                        }
+                    }
+                }
+                else if (columna == Columna && fila < Fila)
+                {
+                    for (int x = 0; x < (Fila - fila) - 1; x++)
+                    {
+                        if (Tablero.tablero[f3 - 1, c3] != null)
+                        {
+                            move = false;
+                            break;
+                        }
+                        else
+                        {
+                            f3 -= 1;
+                        }
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                move = false;
+            }
+            return move;
         }
+
     }
 }
