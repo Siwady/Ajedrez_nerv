@@ -10,15 +10,7 @@ namespace Ajedrez_Nerv
     class Tablero
     {
         public static Ficha[,] tablero;
-        static int movreyB = 0;
-        static int movtorreB = 0;
-        static int movreyN = 0;
-        static int movtorreN = 0;
-        private int piezascomidasB = 0;
-        private int piezascomidasN = 0;
-        public static char resp = 's';
         static int NEW_LINES = 500;
-
         public void Inicializar()
         {
             tablero = new Ficha[9, 9];
@@ -106,7 +98,6 @@ namespace Ajedrez_Nerv
                                     tablero[newfila, newcolumna] = new Peon(tablero[fila, columna].Tipo_Ficha,
                                         tablero[fila, columna].Color_Ficha, newfila, newcolumna);
                                     tablero[fila, columna] = null;
-
                                     return true;
                                 }
                                 else if (tablero[fila, columna].GetType().Name.CompareTo("Caballo") == 0)
@@ -125,14 +116,6 @@ namespace Ajedrez_Nerv
                                 }
                                 else if (tablero[fila, columna].GetType().Name.CompareTo("Torre") == 0)
                                 {
-                                    if (Program.turno == 1)
-                                    {
-                                        movtorreB += 1;
-                                    }
-                                    else
-                                    {
-                                        movtorreN += 1;
-                                    }
                                     tablero[newfila, newcolumna] = new Torre(tablero[fila, columna].Tipo_Ficha,
                                         tablero[fila, columna].Color_Ficha, newfila, newcolumna);
                                     tablero[fila, columna] = null;
@@ -147,68 +130,41 @@ namespace Ajedrez_Nerv
                                 }
                                 else if (tablero[fila, columna].GetType().Name.CompareTo("Rey") == 0)
                                 {
-                                    if (Program.turno == 1)
-                                    {
-                                        movreyB += 1;
-                                    }
-                                    else
-                                    {
-                                        movreyN += 1;
-                                    }
                                     tablero[newfila, newcolumna] = new Rey(tablero[fila, columna].Tipo_Ficha,
                                         tablero[fila, columna].Color_Ficha, newfila, newcolumna);
                                     tablero[fila, columna] = null;
                                     return true;
-
                                 }
                                 else
                                 {
-                                    Console.Write("No se encontro tipo");
+                                    Console.Write("No Se Encontro Tipo de Pieza");
+                                    Console.WriteLine();
                                     return false;
                                 }
                             }
                             else
                             {
-                                Console.Write("Funcion Mover retorno falso");
+                                Console.Write("Funcion Mover Retorno Falso");
+                                Console.WriteLine();
                                 return false;
                             }
                         }
-                        else if (tablero[newfila, newcolumna] != null)
+                        else if (tablero[newfila, newcolumna] != null)//SI LA NUEVA POSICION HAY UNA PIEZA PASA A LA CAPTURA
                         {
-//SI LA NUEVA POSICION HAY UNA PIEZA PASA A LA CAPTURA
                             if (tablero[newfila, newcolumna].Color_Ficha == color)
                             {
-
-
-                                Console.Write("COME A UNA PIEZA MISMO COLOR");
+                                Console.Write("No Se Puede Comer Pieza Mismo Color");
                                 return false;
                             }
                             else
                             {
-                                Console.WriteLine("entre aca");
+                                Console.WriteLine("Realiza una Captura");
                                 bool cap = tablero[fila, columna].Capturar(newfila, newcolumna);
                                 if (cap == true)
                                 {
-                                    if (tablero[fila, columna].Color_Ficha == 'B')
-                                    {
-                                        this.piezascomidasB += 1;
-                                    }
-                                    else if (tablero[fila, columna].Color_Ficha == 'N')
-                                    {
-                                        this.piezascomidasN += 1;
-                                    }
                                     if (tablero[newfila, newcolumna].GetType().Name.CompareTo("Rey") == 0)
                                     {
-                                        if (tablero[fila, columna].Color_Ficha == 'B')
-                                        {
-                                            this.piezascomidasB -= 1;
-                                            resp = 'n';
-                                        }
-                                        else if (tablero[fila, columna].Color_Ficha == 'N')
-                                        {
-                                            this.piezascomidasN -= 1;
-                                            resp = 'n';
-                                        }
+                                        Program.continuar = false;
                                     }
                                     if (tablero[fila, columna].GetType().Name.CompareTo("Peon") == 0)
                                     {
@@ -226,14 +182,6 @@ namespace Ajedrez_Nerv
                                     }
                                     else if (tablero[fila, columna].GetType().Name.CompareTo("Rey") == 0)
                                     {
-                                        if (Program.turno == 1)
-                                        {
-                                            movreyB += 1;
-                                        }
-                                        else
-                                        {
-                                            movreyN += 1;
-                                        }
                                         tablero[newfila, newcolumna] = new Rey(tablero[fila, columna].Tipo_Ficha,
                                             tablero[fila, columna].Color_Ficha, newfila, newcolumna);
                                         tablero[fila, columna] = null;
@@ -241,14 +189,6 @@ namespace Ajedrez_Nerv
                                     }
                                     else if (tablero[fila, columna].GetType().Name.CompareTo("Torre") == 0)
                                     {
-                                        if (Program.turno == 1)
-                                        {
-                                            movtorreB += 1;
-                                        }
-                                        else
-                                        {
-                                            movtorreN += 1;
-                                        }
                                         tablero[newfila, newcolumna] = new Torre(tablero[fila, columna].Tipo_Ficha,
                                             tablero[fila, columna].Color_Ficha, newfila, newcolumna);
                                         tablero[fila, columna] = null;
@@ -267,18 +207,18 @@ namespace Ajedrez_Nerv
                                             tablero[fila, columna].Color_Ficha, newfila, newcolumna);
                                         tablero[fila, columna] = null;
                                         return true;
-
                                     }
                                     else
                                     {
-                                        Console.Write("No se encontro tipo");
+                                        Console.Write("No Se Encontro Tipo de Pieza");
+                                        Console.WriteLine();
                                         return false;
                                     }
                                 }
                                 else
                                 {
-
-                                    Console.Write("Booleano Cap retorno falso");
+                                    Console.Write("Funcion Capturar Retorno Falso");
+                                    Console.WriteLine();
                                     return false;
                                 }
                             }
@@ -286,26 +226,29 @@ namespace Ajedrez_Nerv
                         }
                         else
                         {
-                            Console.Write("Linea 138 retorno falso");
+                            Console.Write("Linea 153 Retorno Falso");
+                            Console.WriteLine();
                             return false;
                         }
                     }
                     else
                     {
-
-                        Console.Write("NOMBRE Y COLOR NO COINCIDEN");
+                        Console.Write("Nombre y Color No Coinciden");
+                        Console.WriteLine();
                         return false;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("\nNO HAY PIEZA EN DICHA POSICION");
+                    Console.WriteLine("\nNo Hay Dicha Posicion");
+                    Console.WriteLine();
                     return false;
                 }
             }
             else
             {
-                Console.Write("esas no son sus fichas");
+                Console.Write("Pieza Seleccionada Incorrecta");
+                Console.WriteLine();
                 return false;
             }
         }
@@ -335,18 +278,17 @@ namespace Ajedrez_Nerv
             }
         }
 
-
-        public static void limpiar()
+        public static void cls()
         {
-            limpiar(0);
+            cls(0);
         }
 
-        private static void limpiar(int c)
+        private static void cls(int c)
         {
             if (c < NEW_LINES)
             {
                 Console.WriteLine("");
-                limpiar(c + 1);
+                cls(c + 1);
             }
         }
     }
