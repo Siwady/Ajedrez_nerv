@@ -33,29 +33,7 @@ namespace Ajedrez_Nerv
                 return true;
             }
             return false;
-            /* if ((fila >= 0 && fila <= 7) && (columna > 0 && columna <= 8))
-            {
-                if (((Fila - fila) == 1 || (Fila - fila) == -1) && ((Columna - columna) == 2 || (Columna - columna) == -2))
-                {
-                    Fila = fila;
-                    Columna = columna;
-                    return true;
-                }
-                else if (((Fila - fila) == 2 || (Fila - fila) == -2) && ((Columna - columna) == 1 || (Columna - columna) == -1))
-                {
-                    Fila = fila;
-                    Columna = columna;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }*/
+            
         }
 
         public bool Capturar(int fila, int columna)

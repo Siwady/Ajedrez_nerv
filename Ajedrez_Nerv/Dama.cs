@@ -22,15 +22,6 @@ namespace Ajedrez_Nerv
         }
         public bool Mover(int fila, int columna)
         {
-            /* Alfil movimiento_Alfil = new Alfil(Tipo_Ficha, Color_Ficha, fila, columna);
-             Torre movimiento_Torre = new Torre(Tipo_Ficha, Color_Ficha, fila, columna);
-             Columna = columna;
-             Fila = fila;
-             return movimiento_Alfil.Mover(fila, columna) ;*/
-
-
-            //int fila = f;
-            //int columna = c;
             bool move = true;
             int f3 = Fila;
             int c3 = Columna;
